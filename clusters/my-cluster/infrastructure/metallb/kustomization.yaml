@@ -1,6 +1,16 @@
-apiVersion: kustomize.config.k8s.io/v1
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
-resources:
-  - namespace.yaml
-  - metallb.yaml
+metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./clusters/my-cluster/infrastructure/metallb
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+  dependsOn:
+    - name: infrastructure
 
