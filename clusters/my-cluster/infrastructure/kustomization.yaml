@@ -4,9 +4,12 @@ metadata:
   name: infrastructure
 spec:
   interval: 1m
-  path: "./clusters/my-cluster/infrastructure"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  path: "./clusters/my-cluster/infrastructure"
   targetNamespace: flux-system
+  resources:
+    - ./metallb
+
