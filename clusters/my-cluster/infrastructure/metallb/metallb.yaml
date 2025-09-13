@@ -1,37 +1,4 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: metallb-system
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: metallb-system
-  name: controller
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: metallb-system:controller
-rules:
-  - apiGroups: [""]
-    resources: ["services", "endpoints", "pods", "nodes"]
-    verbs: ["get", "list", "watch"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: metallb-system:controller
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: metallb-system:controller
-subjects:
-  - kind: ServiceAccount
-    name: controller
-    namespace: metallb-system
----
-apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: metallb-system
@@ -42,4 +9,5 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 192.168.12.100-192.168.12.120
+      - 192.168.12.240-192.168.12.250
+
