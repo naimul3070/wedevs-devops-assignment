@@ -4,7 +4,7 @@ metadata:
   name: metallb
   namespace: flux-system
 spec:
-  interval: 1m
+  interval: 5m
   path: "./clusters/my-cluster/infrastructure/metallb"
   prune: true
   sourceRef:
